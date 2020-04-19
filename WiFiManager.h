@@ -128,7 +128,7 @@ class WiFiManager
 #ifdef ESP8266
     std::unique_ptr<ESP8266WebServer> server;
 #else
-    std::unique_ptr<WebServer>        server;
+    std::auto_ptr<WebServer>        server;
 #endif
 
     //const int     WM_DONE                 = 0;

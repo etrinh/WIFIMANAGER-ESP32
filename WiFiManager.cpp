@@ -11,7 +11,9 @@
  **************************************************************/
 
 #include "WiFiManager.h"
-#include <WebServer.h>
+#if !defined(ESP8266)
+# include <WebServer.h>
+#endif
 
 WiFiManagerParameter::WiFiManagerParameter(const char *custom) {
   _id = NULL;
@@ -797,7 +799,7 @@ int WiFiManager::getRSSIasQuality(int RSSI) {
 
 /** Is this an IP? */
 boolean WiFiManager::isIp(String str) {
-  for (int i = 0; i < str.length(); i++) {
+  for (unsigned int i = 0; i < str.length(); i++) {
     int c = str.charAt(i);
     if (c != '.' && (c < '0' || c > '9')) {
       return false;
